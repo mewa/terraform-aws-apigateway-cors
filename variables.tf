@@ -1,17 +1,30 @@
-variable "api" {}
+variable "api" {
+  description = "id of an aws_api_gateway_rest_api resource"
+}
 
-variable "resource" {}
+variable "resource" {
+  description = "id of an aws_api_gateway_resource resource"
+}
 
 variable "methods" {
-  default = []
+  type = "list"
+  description = "List of permitted HTTP methods. OPTIONS is added by default."
 }
 
 variable "origins" {
+  description = "List of permitted origins"
   default = ["*"]
 }
 
+
 variable "headers" {
+  description = "List of permitted headers. Default headers are alway present unless discard_default_headers variable is set to true"
   default = ["Content-Type", "X-Amz-Date", "Authorization", "X-Api-Key", "X-Amz-Security-Token"]
+}
+
+variable "discard_default_headers" {
+  default = false
+  description = "When set to true to it discards the default permitted headers and only includes those explicitly defined"
 }
 
 locals {
@@ -20,5 +33,5 @@ locals {
 
   methods = "${join(",", distinct(concat(var.methods, list(local.methodOptions))))}"
   origins = "${join(",", var.origins)}"
-  headers = "${join(",", distinct(concat(var.headers, local.defaultHeaders)))}"
+  headers = "${var.discard_default_headers ? join(",", var.headers) : join(",", distinct(concat(var.headers, local.defaultHeaders)))}"
 }
