@@ -45,6 +45,6 @@ resource "aws_api_gateway_integration_response" "cors_integration_response" {
   response_parameters = {
     "method.response.header.Access-Control-Allow-Headers" = "'${local.headers}'",
     "method.response.header.Access-Control-Allow-Methods" = "'${local.methods}'",
-    "method.response.header.Access-Control-Allow-Origin" = "'${local.origins}'"
+    "method.response.header.Access-Control-Allow-Origin" = "'${var.origin}'"
   }
 }

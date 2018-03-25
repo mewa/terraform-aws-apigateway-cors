@@ -11,9 +11,9 @@ variable "methods" {
   description = "List of permitted HTTP methods. OPTIONS is added by default."
 }
 
-variable "origins" {
-  description = "List of permitted origins"
-  default = ["*"]
+variable "origin" {
+  description = "Permitted origin"
+  default = "*"
 }
 
 
@@ -32,6 +32,5 @@ locals {
   defaultHeaders = ["Content-Type", "X-Amz-Date", "Authorization", "X-Api-Key", "X-Amz-Security-Token"]
 
   methods = "${join(",", distinct(concat(var.methods, list(local.methodOptions))))}"
-  origins = "${join(",", var.origins)}"
   headers = "${var.discard_default_headers ? join(",", var.headers) : join(",", distinct(concat(var.headers, local.defaultHeaders)))}"
 }
