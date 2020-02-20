@@ -10,7 +10,7 @@ resource "aws_api_gateway_integration" "cors_integration" {
   resource_id = "${var.resource}"
   http_method = "${aws_api_gateway_method.cors_method.http_method}"
   type                    = "MOCK"
-  request_templates {
+  request_templates = {
 "application/json" = <<EOF
 { "statusCode": 200 }
 EOF
@@ -24,11 +24,11 @@ resource "aws_api_gateway_method_response" "cors_method_response" {
 
   status_code = "200"
 
-  response_models {
+  response_models = {
     "application/json" = "Empty"
   }
 
-  response_parameters {
+  response_parameters = {
     "method.response.header.Access-Control-Allow-Headers" = true,
     "method.response.header.Access-Control-Allow-Methods" = true,
     "method.response.header.Access-Control-Allow-Origin" = true
