@@ -11,7 +11,7 @@ module "example_cors" {
   source  = "mewa/apigateway-cors/aws"
   version = "2.0.0"
 
-  api = "${aws_api_gateway_rest_api.example.id}"
+  api      = "${aws_api_gateway_rest_api.example.id}"
   resource = "${aws_api_gateway_resource.example.id}"
 
   methods = ["GET", "POST"]
@@ -27,7 +27,7 @@ module "confirm_cors" {
   source  = "mewa/apigateway-cors/aws"
   version = "2.0.0"
 
-  api = "${aws_api_gateway_rest_api.example.id}"
+  api      = "${aws_api_gateway_rest_api.example.id}"
   resource = "${aws_api_gateway_resource.example.id}"
 
   methods = ["${aws_api_gateway_method.method01.http_method}", "${aws_api_gateway_method.method02.http_method}"]
@@ -45,12 +45,12 @@ module "confirm_cors" {
   source  = "mewa/apigateway-cors/aws"
   version = "2.0.0"
 
-  api = "${aws_api_gateway_rest_api.example.id}"
+  api      = "${aws_api_gateway_rest_api.example.id}"
   resource = "${aws_api_gateway_resource.example.id}"
 
   methods = ["GET"]
 
-  origin = "https://example.com"
+  origin  = "https://example.com"
   headers = "X-Custom-Header"
 }
 ```
