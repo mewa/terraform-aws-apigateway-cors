@@ -9,7 +9,7 @@ An example module usage, which allows `GET` and `POST` methods from any origin (
 ```
 module "example_cors" {
   source  = "mewa/apigateway-cors/aws"
-  version = "2.0.0"
+  version = "2.0.1"
 
   api      = aws_api_gateway_rest_api.example.id
   resource = aws_api_gateway_resource.example.id
@@ -25,7 +25,7 @@ If you want to customize the allowed origin simply set the `origin` variable to 
 ```
 module "confirm_cors" {
   source  = "mewa/apigateway-cors/aws"
-  version = "2.0.0"
+  version = "2.0.1"
 
   api      = aws_api_gateway_rest_api.example.id
   resource = aws_api_gateway_resource.example.id
@@ -43,7 +43,7 @@ You can also add other permitted headers, which will be appended to the default 
 ```
 module "confirm_cors" {
   source  = "mewa/apigateway-cors/aws"
-  version = "2.0.0"
+  version = "2.0.1"
 
   api      = aws_api_gateway_rest_api.example.id
   resource = aws_api_gateway_resource.example.id
